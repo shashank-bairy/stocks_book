@@ -45,13 +45,14 @@ class RedisStore:
         return search_result
 
     def insert_stock_data(self, stocks):
-        # send 60 insertions at a time to redis
+        # insert 60 stock values at a time
         with self._conn.pipeline() as pipe:
             for i, stock in enumerate(stocks):
                 stock_key = f'stock:{stock["name"]}'
                 fields = ["code", "name", "open", "high", "low", "close"]
                 for field in fields:
                     pipe.hset(stock_key, field, stock[field])
+                # 60 = 6 fields in one loop x 10 loops
                 if (i+1) % 10 == 0:
                     pipe.execute()
             pipe.execute()

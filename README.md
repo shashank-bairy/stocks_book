@@ -7,7 +7,7 @@ Todo:
 - celery job to run on weekdays at 6pm or 18:00 [done]
 - search operation and get data [done]
 - have state for search stirng -> to extract easily [done]
-- redis pipline to insert values
+- redis pipline to insert values [done]
 - delete values before inserting [done]
 - implement search using redis cache [done]
 - add expiry to search data [done]

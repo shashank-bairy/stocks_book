@@ -25,7 +25,7 @@ html,
 body {
   background-color: white;
   color: #555;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: Open Sans, sans-serif;
   font-size: 16px;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;

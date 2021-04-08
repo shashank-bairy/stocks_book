@@ -5,11 +5,11 @@
     v-if="stocks.length"
     showGridlines
     stripedRows
-    :paginator="true"
+    paginator="true"
     :rows="10"
     paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
     :rowsPerPageOptions="[10, 20, 50]"
-    responsiveLayout="scroll"
+    responsiveLayout="stack"
     class="stocks-table"
   >
     <template #header>
@@ -21,8 +21,8 @@
         />
       </div>
     </template>
-    <Column field="code" header="Code"></Column>
-    <Column field="name" header="Name"></Column>
+    <Column field="code" header="Code" style="text-align: right"></Column>
+    <Column field="name" header="Name" style="text-align: right"></Column>
     <Column field="open" header="Open" style="text-align: right">
       <template #body="slotProps">
         {{ formatCurrency(slotProps.data.open) }}
@@ -43,8 +43,6 @@
         {{ formatCurrency(slotProps.data.close) }}
       </template>
     </Column>
-    <template #paginatorLeft> </template>
-    <template #paginatorRight> </template>
   </DataTable>
 </template>
 <script>
@@ -70,6 +68,6 @@ export default {
 <style scoped>
 .stocks-table {
   width: 100%;
-  padding: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 </style>

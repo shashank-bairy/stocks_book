@@ -34,7 +34,7 @@ def get_bhav_copy():
     rs = RedisStore(connection_pool=settings.REDIS_CONN_POOL)
     rs.delete_stock_data()
     rs.insert_stock_data(stocks)
-    
+
 
 if __name__ == '__main__':
     get_bhav_copy()

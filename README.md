@@ -14,6 +14,7 @@ Todo:
 - django connection pool [done]
 - display records not found when search is not successful
 - error handling
+- insert records when run for first time
 
 eval "for \_,k in ipairs(redis.call('keys','stock:\*')) do redis.call('del',k) end" 0
 

@@ -1,7 +1,6 @@
 import redis
 from django.http import JsonResponse
 from django.conf import settings
-from backend.settings import BASE_DIR, REDIS_HOST, REDIS_PORT
 from .redis_store import RedisStore
 import json
 

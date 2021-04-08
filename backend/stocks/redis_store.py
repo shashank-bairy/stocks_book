@@ -16,7 +16,7 @@ class RedisStore:
         else:
             stocks = []
             for key in self._conn.scan_iter(f'stock:{match}*', 1000):
-                _, result = self._conn.hscan(key) 
+                result = self._conn.hgetall(key) 
                 stock = {
                     "code": int(result[b'code']),
                     "name": result[b'name'].decode("utf-8"),
@@ -26,7 +26,7 @@ class RedisStore:
                     "close": float(result[b'close'])
                 }
                 stocks.append(stock)
-            self._conn.set(search_key, json.dumps(stocks))
+            self._conn.set(search_key, json.dumps(stocks), ex=300)
         
         return stocks
 

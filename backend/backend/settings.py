@@ -78,6 +78,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+# Celery
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_TIMEZONE = "Asia/Kolkata"
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

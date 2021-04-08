@@ -3,7 +3,10 @@
     <div class="stocks-container">
       <div class="stocks-header">
         <h1 class="stocks-title">StocksBook</h1>
-        <img class="stocks-logo" :src="require('./../assets/bb.png')" />
+        <img
+          class="stocks-logo"
+          :src="require('./../assets/stocks_book_logo.png')"
+        />
       </div>
       <div class="stocks-searchbox">
         <div class="p-inputgroup">

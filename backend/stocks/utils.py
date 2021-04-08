@@ -1,8 +1,21 @@
 import os
+import json
 import requests
-import datetime
+import pytz
 import zipfile
+import pandas as pd
+from datetime import datetime, timedelta
 from pathlib import Path
+
+def get_date_IST():
+    IST = pytz.timezone('Asia/Kolkata')
+    current_time = datetime.now(IST)
+    upload_time = datetime.now(IST).replace(hour=18, minute=0, second=0, microsecond=0)
+    if current_time.time() < upload_time.time():
+        current_time = current_time - timedelta(1)
+    date = current_time.strftime("%d%m%Y")
+    date = date[:4]+date[6:]
+    return date
 
 def download(download_url, file_path):
     """
@@ -28,3 +41,14 @@ def unzip(file_path):
     with zipfile.ZipFile(file_path, "r") as compressed_file:
         compressed_file.extractall(Path(file_path).parent)
     print("Completed un-compressing")
+
+def get_csv_data(csv_file_path, usecols, columns):
+    df = pd.read_csv(
+        csv_file_path,
+        usecols=usecols
+    )
+    df.columns = columns
+    df['name'] = df['name'].str.strip()
+
+    csv_data = json.loads(df.to_json(orient='table'))["data"]
+    return csv_data

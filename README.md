@@ -43,5 +43,9 @@ property in jules file -cron job
 https://stackoverflow.com/questions/12967107/managing-connection-to-redis-from-python
 
 Celery commands:
-celery -A backend beat -l INFO
-celery -A backend worker -l INFO
+celery -A stocks_book beat -l INFO
+celery -A stocks_book worker -l INFO
+
+export REDIS_URL=redis://localhost:6379
+
+gunicorn stocks_book.wsgi

@@ -3,9 +3,9 @@ import os
 from celery import Celery
 from celery.schedules import crontab
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'stocks_book.settings')
 
-app = Celery('backend')
+app = Celery('stocks_book')
 
 #  all celery-related configuration keys should have a `CELERY_` prefix
 app.config_from_object('django.conf:settings', namespace='CELERY')

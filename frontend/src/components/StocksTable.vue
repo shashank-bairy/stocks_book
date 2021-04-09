@@ -69,5 +69,6 @@ export default {
 .stocks-table {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  font-family: Open Sans, sans-serif;
 }
 </style>

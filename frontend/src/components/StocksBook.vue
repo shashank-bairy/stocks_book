@@ -22,7 +22,7 @@
       </div>
       <div class="stock-tablebox">
         <StocksTable v-if="!searchValueNotFound" :stocks="stocks" />
-        <h6 v-else>Search Value Not Found</h6>
+        <h3 class="stock-notfound" v-else>Stock Not Found!</h3>
       </div>
     </div>
   </div>
@@ -130,6 +130,11 @@ export default {
 .stock-tablebox {
   padding: 2.5rem;
 }
+.stock-notfound {
+  font-family: Open Sans, sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+}
 @media only screen and (max-width: 769px) {
   .stocks-header {
     justify-content: center;
@@ -144,6 +149,11 @@ export default {
   }
   .stocks-searchbox {
     width: 80%;
+  }
+  .stock-notfound {
+    font-family: Open Sans, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
   }
 }
 </style>

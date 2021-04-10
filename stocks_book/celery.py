@@ -13,7 +13,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'get_bhav_copy_at_18': {
         'task': 'stocks.tasks.get_bhav_copy',
-        'schedule': 30,
+        'schedule': crontab(hour=22, minute=15)
         # 'schedule': crontab(hour=18, minute=0, day_of_week='1-5')
     }
 }

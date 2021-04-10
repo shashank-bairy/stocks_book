@@ -48,4 +48,7 @@ celery -A stocks_book worker -l INFO
 
 export REDIS_URL=redis://localhost:6379
 
-gunicorn stocks_book.wsgi
+gunicorn stocks_book.wsgi --bind 0.0.0.0:8000
+
+docker-compose up
+docker-compose run django

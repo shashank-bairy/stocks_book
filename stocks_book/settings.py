@@ -84,7 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'stocks_book.wsgi.application'
 
 # Celery
-CELERY_BROKER_URL = os.environ.get("REDIS_URL")
+CELERY_BROKER_URL = 'redis://:aEr0YOCtMenyaoypkxHzH3bUFVlBU9nZmDmcIbbRsEM=@redis-stocks-book.redis.cache.windows.net:6379'
 CELERY_TIMEZONE = "Asia/Kolkata"
 
 
@@ -144,9 +144,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Redis
-url = urlparse(os.environ.get("REDIS_URL"))
-REDIS_CONN_POOL = redis.ConnectionPool(
-    host=url.hostname,
-    port=url.port,
-    db=0
-)
+REDIS_CONN_POOL = redis.ConnectionPool.from_url('redis://:B4hwEJiM4wRaZI5MbA9OCpa9gyAYE9uSM9558uMroO8=@redis-stocks-book.redis.cache.windows.net:6379')

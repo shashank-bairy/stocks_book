@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  django:
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+
+  celery:
+    restart: always
+    build: .
+    command: celery -A stocks_book worker -l INFO
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - django
+      - redis
+
+  celery-beat:
+    restart: always
+    build: .
+    command: celery -A stocks_book beat -l INFO
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - django
+      - redis

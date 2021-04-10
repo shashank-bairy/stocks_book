@@ -29,7 +29,7 @@ SECRET_KEY = '!!c7y2)t%wc4a*#jpzh28-abrh5#ymxjm155*b$8lq(fmtg8fi'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'stocksbook.azurewebsites.net'
+    'stocksbook.azurewebsites.net', 'localhost', '127.0.0.1'
 ]
 
 

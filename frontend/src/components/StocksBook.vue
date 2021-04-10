@@ -54,7 +54,7 @@ export default {
         this.searchValueNotFound = false;
       } else {
         axios
-          .get(`http://localhost:8000/stocks/search/${this.searchValue}`)
+          .get(`/stocks/search/${this.searchValue}`)
           .then((res) => (this.stocks = res.data))
           .then(
             (data) => (this.searchValueNotFound = !Object.keys(data).length)

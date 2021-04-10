@@ -28,7 +28,9 @@ SECRET_KEY = '!!c7y2)t%wc4a*#jpzh28-abrh5#ymxjm155*b$8lq(fmtg8fi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'stocksbook.azurewebsites.net'
+]
 
 
 # Application definition

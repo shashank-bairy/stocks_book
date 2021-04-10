@@ -236,4 +236,6 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+!static/dist/
+
 # End of https://www.toptal.com/developers/gitignore/api/python,django,redis,vuejs

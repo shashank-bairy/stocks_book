@@ -20,11 +20,6 @@ def get_bhav_copy():
     download_url = os.path.join(BSE_URL, zip_file_name)
     download(download_url=download_url, file_path=zip_file_path)
 
-    file = os.path.join(settings.BASE_DIR, 'data', "hello.txt")
-    filew = open(file, 'a')
-    filew.write(zip_file_name + '\n')
-    filew.close()
-
     try:
         unzip(file_path=zip_file_path)
     except BadZipFile:

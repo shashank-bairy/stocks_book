@@ -17,6 +17,7 @@ Todo:
 - insert records when run for first time
 
 eval "for \_,k in ipairs(redis.call('keys','stock:\*')) do redis.call('del',k) end" 0
+eval "for \_,k in ipairs(redis.call('keys','search:\*')) do redis.call('del',k) end" 0
 
 HGET WHIRLPOOL name
 HGET WHIRLPOOL code
@@ -52,3 +53,6 @@ gunicorn stocks_book.wsgi --bind 0.0.0.0:8000
 
 docker-compose up
 docker-compose run django
+
+kill -9 pid
+ps aux|grep 'celery'

@@ -16,6 +16,17 @@ services:
     depends_on:
       - redis
 
+  vue:
+    build: ./frontend
+    container_name: vue
+    command: npm run --prefix frontend serve
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - django
+
   redis:
     image: "redis:alpine"
 

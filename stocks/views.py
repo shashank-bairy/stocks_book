@@ -2,11 +2,15 @@ import redis
 from django.views import View
 from django.http import JsonResponse
 from django.conf import settings
+
 from .redis_store import RedisStore
-import json
 
 class StocksSearchView(View):
     def get(self, request, input):
+        """
+        Accepts GET request at /stocks/search/<str:input>
+        input - Search value entered by the user.
+        """
         rs = RedisStore(connection_pool=settings.REDIS_CONN_POOL)
         
         input = input.upper()

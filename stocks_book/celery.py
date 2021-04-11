@@ -10,7 +10,8 @@ app = Celery('stocks_book')
 #  all celery-related configuration keys should have a `CELERY_` prefix
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# get bhavcopy only on weekdays. Markets are closed on weekends
+# Establish a celery beat schedule
+# Task: Get bhavcopy only on weekdays at 18:00. Markets are closed on weekends.
 app.conf.beat_schedule = {
     'get_bhav_copy_at_18': {
         'task': 'stocks.tasks.get_bhav_copy',

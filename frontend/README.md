@@ -1,24 +1,11 @@
-# frontend
+# StocksBook frontend (Vue + PrimeVue)
 
-## Project setup
-```
-npm install
-```
+For developer setup instructions, refer to the main project's README.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Build
 
-### Compiles and minifies for production
+To build the frontend for django to serve static files during production, execute:
+
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

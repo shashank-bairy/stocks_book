@@ -8,6 +8,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 def get_date_IST():
+    """
+    Returns the date value in Indian Standard Time in ddmmyy format.
+    """
     IST = pytz.timezone('Asia/Kolkata')
     current_time = datetime.now(IST)
     upload_time = datetime.now(IST).replace(hour=18, minute=0, second=0, microsecond=0)
@@ -19,7 +22,7 @@ def get_date_IST():
 
 def download(download_url, file_path):
     """
-    download function is used to fetch the data
+    Function is download data from given url and save it in given file path. 
     """
     if not os.path.exists(file_path):
         file_to_save = open(file_path, "wb")
@@ -32,12 +35,15 @@ def download(download_url, file_path):
 
 def unzip(file_path):
     """
-    unzip function used to unzip downloaded file
+    Function used to unzip downloaded file and extract it's contents.
     """
     with zipfile.ZipFile(file_path, "r") as compressed_file:
         compressed_file.extractall(Path(file_path).parent)
 
 def get_csv_data(csv_file_path, usecols, columns):
+    """
+    Read data in given csv file path from given columns 'usecols' and renaming the columns according to given 'columns' value. 
+    """
     df = pd.read_csv(
         csv_file_path,
         usecols=usecols

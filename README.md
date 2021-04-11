@@ -1,58 +1,54 @@
-# Stocks Book
+# StocksBook
 
-Todo:
+StocksBook is an application used to view latest Bhavcopy equity data from BSE. Data such as Code, Name, Open, High, Low and Close can be viewed.
 
-- time according to timezone [done]
-- get data from redis cache and display in index.html [done]
-- celery job to run on weekdays at 6pm or 18:00 [done]
-- search operation and get data [done]
-- have state for search stirng -> to extract easily [done]
-- redis pipline to insert values [done]
-- delete values before inserting [done]
-- implement search using redis cache [done]
-- add expiry to search data [done]
-- django connection pool [done]
-- display records not found when search is not successful
-- error handling
-- insert records when run for first time
+Updated data is fetched everyday at 18:00.
 
-eval "for \_,k in ipairs(redis.call('keys','stock:\*')) do redis.call('del',k) end" 0
-eval "for \_,k in ipairs(redis.call('keys','search:\*')) do redis.call('del',k) end" 0
+It is currently deployed on Azure platform usign Azure App Service and Azure Cache for Redis.
 
-HGET WHIRLPOOL name
-HGET WHIRLPOOL code
-HGETALL WHIRLPOOL
-SCAN 0 MATCH stock:WI\* COUNT 5000 (remove \)
-KEYS \* (list all keys, remove \)
+Website: https://stocksbook.azurewebsites.net/
 
-redis-cli
-redis-server
+![StocksBook Demo](./screenshots/stocks_book_demo.gif)
 
-As per Redis 4.0.0, HMSET is considered deprecated. Please use HSET in new code.
-scan_iter
+## Tech Stack
 
-https://stackoverflow.com/questions/22255589/get-all-keys-in-redis-database-with-python
-https://stackabuse.com/working-with-redis-in-python-with-django/
-https://stackoverflow.com/questions/21975228/redis-python-how-to-delete-all-keys-according-to-a-specific-pattern-in-python
+- Python 3.9
+- Django 3.2
+- Vue 3
+- Redis
+- Celery (Beat and Worker)
 
-name
-repo has jules
-release/sonar scan has jules
-if relese/sonar which branch has it
-property in jules file -cron job
+## Functionality Implemented
 
-https://stackoverflow.com/questions/12967107/managing-connection-to-redis-from-python
+- Backend is coded using Python and Django.
+- Fetch Bhavcopy from BSE website on weekdays at 18:00 using Celery worker (as markets are closed on weekends and Bhavcopy is not available).
+- Extract CSV from ZIP file and parse the Bhavcopy data.
+- Insert the Bhavcopy data after parsing into Redis using redis-py after deleting old data.
+- Frontend is implemented in Vue and PrimeVue (for table).
+- Frontend is responsive to support all screen sizes.
+- Render a search bar in frontend where the stocks can be searched and the results are rendered in table format.
+- Search is performed on Redis in the backend and results are cached for 300s for quick retrieval in immediate future.
+- The results can be exported as a CSV file using a button provided.
+- The website is deployed on Azure platform via Azure App Service and Azure Cache for Redis.
+- Github actions is setup for Continuous Deployment on Azure on pushing the changes.
+- docker-compose.yml file is created for easy setup in local development environment.
 
-Celery commands:
-celery -A stocks_book beat -l INFO
-celery -A stocks_book worker -l INFO
+## Local Setup
 
-export REDIS_URL=redis://localhost:6379
+The development setup can be done locally using docker by following the below steps:
 
-gunicorn stocks_book.wsgi --bind 0.0.0.0:8000
+1. Clone the repository
 
-docker-compose up
-docker-compose run django
+   `git clone https://github.com/BA1RY/stocks_book.git`
 
-kill -9 pid
-ps aux|grep 'celery'
+2. Move inside the cloned repositoty
+
+   `cd stocks_book`
+
+3. Run docker-compose to start development server
+
+   `docker-compose up`
+
+4. To stop the development server, run
+
+   `docker-compose down`

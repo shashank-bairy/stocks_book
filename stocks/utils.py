@@ -10,6 +10,8 @@ from pathlib import Path
 def get_date_IST():
     """
     Returns the date value in Indian Standard Time in ddmmyy format.
+    If we are making request before 18:00 then it needs to return previous
+    day's date.
     """
     IST = pytz.timezone('Asia/Kolkata')
     current_time = datetime.now(IST)

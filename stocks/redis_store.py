@@ -4,9 +4,6 @@ import redis
 class RedisStore:
     def __init__(self, connection_pool):
         self._conn = redis.Redis(connection_pool=connection_pool)
-        self._fields = [
-            "code", "name", "open", "high", "low", "close"
-        ]
 
     def _get_stock_list(self, stocks):
         stock_list = []

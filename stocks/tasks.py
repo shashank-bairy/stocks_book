@@ -33,7 +33,7 @@ def get_bhav_copy():
         # Unzip downloaded file
         unzip(file_path=zip_file_path)
     except BadZipFile:
-        print('Bhavcopy was not uploaded today.')
+        print(f'Bhavcopy was not uploaded today {date}.')
         return
     finally:
         # Remove the zip file downloaded

@@ -4,7 +4,7 @@ StocksBook is an application used to view latest Bhavcopy equity data from BSE. 
 
 Updated data is fetched everyday at 18:00.
 
-It is currently deployed on Azure platform usign Azure App Service and Azure Cache for Redis.
+It is currently deployed on Azure platform using Azure App Service and Azure Cache for Redis.
 
 Website: https://stocksbook.azurewebsites.net/
 

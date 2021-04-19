@@ -12,7 +12,8 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
-      - REDIS_URL=redis://redis:6379
+      - REDIS_CONNECTION_1=redis://redis:6379
+      - REDIS_CONNECTION_2=redis://redis:6379
     depends_on:
       - redis
 
@@ -38,7 +39,8 @@ services:
     volumes:
       - .:/usr/src/app
     environment:
-      - REDIS_URL=redis://redis:6379
+      - REDIS_CONNECTION_1=redis://redis:6379
+      - REDIS_CONNECTION_2=redis://redis:6379
     depends_on:
       - django
       - redis
@@ -50,7 +52,8 @@ services:
     volumes:
       - .:/usr/src/app
     environment:
-      - REDIS_URL=redis://redis:6379
+      - REDIS_CONNECTION_1=redis://redis:6379
+      - REDIS_CONNECTION_2=redis://redis:6379
     depends_on:
       - django
       - redis
